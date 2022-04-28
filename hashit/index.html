@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>HashIt | A new way to bookmark</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.17e50649.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" crossorigin src="/assets/index.d4b1cbfe.js"></script>
+    <link rel="stylesheet" href="/assets/index.3aa06753.css">
+  </head>
+
+  <body class="font-sans transition-colors duration-300 ease-linear">
+    <header
+      class="fixed top-0 z-50 flex h-20 w-full items-center justify-between border-b-2 border-b-teal-600 bg-teal-200 p-4 dark:bg-teal-900"
+    >
+      <div class="text-base font-bold">
+        <a href="#" class="select-none pl-2 text-teal-600 dark:text-teal-300"
+          >HashIt</a
+        >
+      </div>
+      <div
+        class="flex cursor-pointer items-center space-x-2 text-sm text-teal-800 dark:text-teal-200"
+      >
+        <a
+          class="select-none rounded-full bg-transparent px-3 py-1 hover:bg-teal-200 hover:text-teal-800 active:bg-teal-600 active:text-teal-200"
+          href="https://github.com/fallin-rain/hashit"
+          target="_blank"
+          >code</a
+        >
+
+        <button
+          id="btn-theme"
+          class="select-none rounded-full bg-transparent bg-teal-800 px-4 py-2 text-teal-200 active:bg-teal-600 active:text-teal-200"
+        >
+          Theme
+        </button>
+      </div>
+    </header>
+
+    <div
+      id="home"
+      class="min-h-screen w-full space-y-10 bg-teal-50 py-10 pt-24 dark:bg-teal-900"
+    >
+      <div class="space-y-6 px-6">
+        <!-- input -->
+        <textarea
+          rows="8"
+          id="textarea"
+          placeholder="Paste a note or link"
+          class="w-full resize-none rounded-3xl bg-teal-200 px-6 py-4 font-code text-teal-800 outline-none placeholder:text-teal-800 dark:bg-teal-700 dark:text-teal-50 dark:placeholder:text-teal-50"
+        ></textarea>
+        <input
+          type="submit"
+          value="Hash it"
+          class="mx-auto block select-none rounded-2xl bg-teal-800 px-10 py-4 font-bold text-teal-200 outline-none transition-colors duration-300 ease-linear active:rounded-full disabled:bg-gray-200 disabled:text-gray-600 dark:bg-teal-300 dark:text-teal-900 dark:disabled:bg-gray-400 dark:disabled:text-gray-600"
+        />
+        <!-- CARDS  -->
+        <!-- only appears when hashtag is generated -->
+        <div
+          id="hash"
+          class="hidden w-full space-y-2 rounded-3xl bg-teal-200 p-6"
+        >
+          <p id="hash-title" class="w-max text-teal-600"></p>
+          <h1
+            id="hash-tag"
+            class="mx-auto w-min cursor-pointer select-none rounded-xl px-6 py-2 text-center font-code text-4xl text-teal-800 active:bg-teal-600 active:text-teal-200"
+          ></h1>
+          <!-- helper text -->
+          <p id="hash-tip" class="pt-1 text-center text-xs text-teal-600"></p>
+        </div>
+        <!-- ERROR -->
+        <div
+          id="error"
+          class="hidden w-full space-y-4 rounded-3xl bg-[#ffdad4] p-6 text-[#410001]"
+        >
+          <p
+            id="error-title"
+            class="w-max rounded-full bg-[#ba1b1b] px-4 py-1 text-white"
+          ></p>
+          <h1
+            id="error-content"
+            class="cursor-pointer rounded-xl text-base"
+          ></h1>
+          <!-- helper text -->
+          <p id="error-tip" class="text-center text-xs text-[#ba1b1b]"></p>
+        </div>
+      </div>
+    </div>
+    <!-- LIST -->
+    <div
+      id="list"
+      class="mt-20 hidden min-h-screen w-full space-y-6 bg-teal-50 px-6 py-10 dark:bg-teal-900"
+    >
+      <input
+        id="search-list"
+        type="text"
+        placeholder="Search by hashtag"
+        class="mb-4 w-full select-none rounded-2xl bg-teal-200 px-6 py-4 text-center font-code text-teal-800 outline-none placeholder:text-teal-800 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-600 dark:bg-teal-700 dark:text-teal-50 dark:placeholder:text-teal-50"
+      />
+      <!-- queried by user -->
+      <div id="query-card" class="w-full space-y-6"></div>
+      <!-- search cards -->
+      <div id="search-card" class="w-full space-y-6 pb-24"></div>
+    </div>
+    <!-- Nav bar -->
+    <nav
+      id="nav"
+      class="fixed bottom-10 left-2/4 z-50 flex -translate-x-2/4 rounded-full bg-teal-400 text-teal-800 shadow-md dark:bg-teal-600 dark:text-teal-400"
+    >
+      <button
+        id="nav-home"
+        class="cursor-pointer select-none rounded-full bg-teal-800 px-8 py-4 text-sm font-bold tracking-wide text-teal-200 transition-colors duration-200 ease-out dark:bg-teal-200 dark:text-teal-800"
+      >
+        Home
+      </button>
+      <button
+        id="nav-list"
+        class="cursor-pointer select-none rounded-full px-8 py-4 text-sm font-bold transition-colors duration-200 ease-out"
+      >
+        Lists
+      </button>
+    </nav>
+
+    <!-- Theme toggle overlay -->
+    <div id="theme-toggle-menu" class="hidden">
+      <div
+        class="fixed top-20 right-4 z-50 flex w-min flex-col items-center justify-center space-y-6 rounded-3xl bg-teal-600 p-6"
+      >
+        <!-- Text -->
+        <div class="w-full">
+          <h3 class="mb-4 text-center text-xl text-teal-50">Appearance</h3>
+          <p class="w-full text-xs tracking-wider text-teal-200">
+            Selecting system will set the theme based on device's theme
+          </p>
+        </div>
+        <!-- toggle buttons -->
+        <div
+          class="mt-4 flex w-full items-center justify-between overflow-hidden rounded-xl bg-teal-200 text-center text-sm font-bold text-teal-800"
+        >
+          <button id="theme-btn-dark" class="rounded-xl px-5 py-4">Dark</button>
+          <button id="theme-btn-system" class="rounded-xl px-4 py-4">
+            System
+          </button>
+          <button id="theme-btn-light" class="rounded-xl px-5 py-4">
+            Light
+          </button>
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>
