@@ -329,7 +329,7 @@ footer blockquote {
     padding-bottom: 0;
   }
   #about > * + * {
-    margin-top: 3rem;
+    margin-top: 1.5rem;
   }
   #about > .flex {
     margin-inline: -1.5rem;
